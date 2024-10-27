@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 import environ
+from dotenv import load_dotenv
+
+
+# loading variables from .env file
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "listener",
 ]
 
 MIDDLEWARE = [
@@ -127,3 +133,9 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Infura
+INFURA_URL = env.str("INFURA_URL")
+INFURA_API_KEY = env.str("INFURA_API_KEY")
+CONTRACT_ADDRESS = env.str("CONTRACT_ADDRESS")
