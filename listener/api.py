@@ -59,8 +59,17 @@ class InfuraAPI:
     ) -> list[dict]:
         """Function to get contract transfer events"""
         contract = self._get_contract(contract_address, abi)
-        events = contract.events.Transfer.create_filter(
+        return contract.events.Transfer.create_filter(
             from_block=start_block, to_block=end_block
         ).get_all_entries()
 
-        return events
+    def get_new_contract_events(
+        self,
+        contract_address: str = None,
+        abi: list[dict] = None,
+    ) -> list[dict]:
+        """Function to fetch new contract transfer events"""
+        contract = self._get_contract(contract_address, abi)
+        return contract.events.Transfer.create_filter(
+            from_block="latest"
+        ).get_new_entries()
